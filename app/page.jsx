@@ -20,36 +20,35 @@ const Home = () => {
     }
   });
 
+  const fetchStockDataWithPrediction = async () => {
+    try {
+      const res = await fetch(`api/stocks`, {
+        method: "POST",
+        body: JSON.stringify(req),
+      });
+      if (!res.ok) {
+        const resMessage = await res.json();
+        throw new Error(resMessage.message);
+      }
+      const stocks = await res.json();
+      const response = await fetch(`api/stocks/predict`, {
+        method: "POST",
+        body: JSON.stringify(stocks),
+      });
+      if (!response.ok) {
+        const responseMessage = await res.json();
+        throw new Error(responseMessage.message);
+      }
+      const data = await response.json();
+
+      SetStockDataEntries(data);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   if (req !== "") {
-    if (req.operationId === 1) {
-      const fetchStockData = async () => {
-        const response = await fetch(`api/stocks`, {
-          method: "POST",
-          body: JSON.stringify(req),
-        });
-        const data = await response.json();
-        SetStockDataEntries(data);
-      };
-      fetchStockData();
-    }
-    if (req.operationId === 2) {
-      const fetchStockDataWithPrediction = async () => {
-        const res = await fetch(`api/stocks`, {
-          method: "POST",
-          body: JSON.stringify(req),
-        });
-        const stocks = await res.json();
-        const response = await fetch(`api/stocks/predict`, {
-          method: "POST",
-          body: JSON.stringify(stocks),
-        });
-        const data = await response.json();
-
-        SetStockDataEntries(data);
-      };
-
-      fetchStockDataWithPrediction();
-    }
+    fetchStockDataWithPrediction();
     setReq("");
   }
 
@@ -59,7 +58,7 @@ const Home = () => {
   return (
     <section className="w-full d-flex flex-column align-items-center">
       <h1 className="head_text">Stock Prediction</h1>
-      <StockForm files={files} onSubmit={handleFetchDataEntries} />
+      <StockForm onSubmit={handleFetchDataEntries} />
       {stockDataEntries && stockDataEntries.length
         ? stockDataEntries.map((stockData) => {
             return <StockList stocks={stockData} />;
