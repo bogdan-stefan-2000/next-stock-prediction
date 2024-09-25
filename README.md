@@ -1,17 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Stock Prediction
 
-## Getting Started
+The project is a fullstack nextjs application that is deployed on vercel with CI/CD features
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The project is used for:
+- Predicting stock prices for a random timestamp for all stock exchanges predfined in a local path. --> "stocks_data" folder in the local project
+- Downloading the data as csv files
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
