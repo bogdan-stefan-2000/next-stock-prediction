@@ -32,9 +32,8 @@ git clone https://github.com/bogdan-stefan-2000/next-stock-prediction.git
 ```
 2. Go to directory "next-stock-prediction" and open a terminal to run these commands
 ```
+This project was made using node v20.17.0 and npm 10.8.3
 npm i
-```
-```
 npm run dev
 ```
 3. The project shoul run locally on http://localhost:3000
