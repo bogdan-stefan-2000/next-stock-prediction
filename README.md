@@ -5,7 +5,7 @@ The project is a fullstack nextjs application that is deployed on vercel with CI
 ## Project Summary
 
 The project is used for:
-- Predicting stock prices for a random timestamp for all stock exchanges predfined in a local path. --> "stocks_data" folder in the local project
+- Predicting stock prices based on a set of 10 entries from a random timestamp for all stock exchanges in a local path. --> "stocks_data" folder in the local project
 - Downloading the data as csv files
 
 Frontend:
