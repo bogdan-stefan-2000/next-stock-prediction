@@ -1,8 +1,18 @@
+/*
+  Endpoint: host/api/stocks/predict
+  Request body:
+  [{
+    stockId: string,
+    timestamp: string,
+    value: number
+  }];
+*/
 export const POST = async (request) => {
   try {
     let body = await request.json();
 
     body.forEach((entries) => {
+      // Get the constants
       const { m, b } = linearRegression(
         Array.from({ length: entries.length }, (_, i) => i + 1),
         entries.map((entry) => entry.value)
@@ -14,7 +24,7 @@ export const POST = async (request) => {
         entries.push({
           stockId: entries[0].stockId,
           timestamp: timestamp,
-          value: (m * (entries.length + index + 1) + b).toFixed(1),
+          value: (m * (entries.length + index + 1) + b).toFixed(1), // Calculate the next value
         });
       }
     });
@@ -27,6 +37,7 @@ export const POST = async (request) => {
   }
 };
 
+// Calculates the constants needed for prediction
 function linearRegression(x, y) {
   const n = x.length;
 
@@ -41,6 +52,7 @@ function linearRegression(x, y) {
   return { m, b };
 }
 
+// Utility function to process the timestamp
 function getDateForNextEntry(dateString) {
   const [day, month, year] = dateString.split("-");
   let date = new Date(year, month - 1, day);

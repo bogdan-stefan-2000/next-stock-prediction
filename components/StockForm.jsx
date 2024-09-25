@@ -17,10 +17,6 @@ const StockForm = ({ files, onSubmit }) => {
     }
   }
 
-  function handleChange(e) {
-    setSelectedFile(e.target.value);
-  }
-
   function handleSubmit() {
     let req = {
       numberOfFiles: numberOfFiles,
@@ -32,7 +28,9 @@ const StockForm = ({ files, onSubmit }) => {
     <div className="d-flex flex-column align-items-center justify-content-center mt-4">
       <div className="flex-center d-flex flex-row">
         <div className="ms-2 d-flex flex-row">
-          <span className="me-3 text_xl text_black">Number of files:</span>
+          <span className="me-3 text_xl text_black">
+            Select number of files:
+          </span>
           <div className="d-flex flex-row align-items-center justify-content-center">
             <button
               className="btn btn-primary"
